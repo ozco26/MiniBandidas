@@ -1,0 +1,65 @@
+﻿@model MiniBandidas.Models.ViewModels.UsuarioViewModel
+@{
+    ViewBag.Title = "Registro de Usuario";
+}
+
+<h2>Agregar Usuario</h2>
+<hr />
+
+<div Class="row">
+    <div class=" = " col-10">
+        @using (Html.BeginForm("Registrarse", "Usuario", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.email)
+            @Html.TextBoxFor(d => d.email, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.email, "", new { @class = "text-danger d-block mb-2" })
+
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.cedula)
+            @Html.TextBoxFor(d => d.cedula, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.cedula, "", new { @class = "text-danger d-block mb-2" })
+
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.nombre)
+            @Html.TextBoxFor(d => d.nombre, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.nombre, "", new { @class = "text-danger d-block mb-2" })
+
+
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.apellido)
+            @Html.TextBoxFor(d => d.apellido, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.apellido, "", new { @class = "text-danger d-block mb-2" })
+
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.contraseña)
+            @Html.TextBoxFor(d => d.contraseña, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.contraseña, "", new { @class = "text-danger d-block mb-2" })
+
+
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.telefono)
+            @Html.TextBoxFor(d => d.telefono, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.telefono, "", new { @class = "text-danger d-block mb-2" })
+
+
+
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.estado)
+            @Html.TextBoxFor(d => d.estado, new { @Class = "form-control" })
+            @Html.ValidationMessageFor(d => d.estado, "", new { @class = "text-danger d-block mb-2" })
+
+
+
+            <div class="mt-2">
+                <input type="submit" class="btn btn-primary" value="Registrarse" />
+                <input type="button" class="btn btn-secondary" value="Regresar"
+                       onClick="document.location.href ='@Url.Content("~/Home/Index")'" />
+            </div>
+
+
+
+        }
+    </div>
+</div>
+

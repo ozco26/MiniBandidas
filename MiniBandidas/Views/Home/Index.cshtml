@@ -2,8 +2,49 @@
     ViewBag.Title = "Index";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>Bienvenido a MiniBandidas</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tu página</title>
+    <style>
+        .col-md-12 {
+            text-align: center;
+        }
+
+        h1 {
+            color: fuchsia;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+            .button-container button {
+                margin: 10px;
+            }
+
+        .btn-purple {
+            background-color: purple;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="ruta/a/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Bienvenido a MiniBandidas</h1>
+            </div>
+        </div>
+        <div class="row button-container">
+            <div class="col-md-12">
+                <input type="button" class="btn btn-purple" value="Registrarse" onclick="document.location.href = '@Url.Content("~/Usuario/Registrarse/")'" />
+                <input type="button" class="btn btn-purple" value="Iniciar Sesión" onclick="document.location.href = '@Url.Content("~/Usuario/IniciarSesion/")'" />
+            </div>
+        </div>
     </div>
-</div>
+    <script src="ruta/a/jquery.min.js"></script>
+    <script src="ruta/a/bootstrap.min.js"></script>
+</body>
+</html>
