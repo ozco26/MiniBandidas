@@ -16,9 +16,9 @@
           <Key>
             <PropertyRef Name="numPedido" />
           </Key>
-          <Property Name="numPedido" Type="int" Nullable="false" />
+          <Property Name="numPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="producto" Type="int" Nullable="false" />
-          <Property Name="subtotal" Type="money" Nullable="false" />
+          <Property Name="subtotal" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -29,7 +29,7 @@
           <Property Name="topping1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="topping2" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -39,10 +39,22 @@
           <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="20" />
           <Property Name="cedula" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasenna" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="telefono" Type="varchar" MaxLength="50" />
           <Property Name="estado" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Pedido_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="numPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuarios_Estados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -60,6 +72,10 @@
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Pedido_Productos" Association="Self.FK_Pedido_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Estados" Association="Self.FK_Usuarios_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
@@ -84,11 +100,11 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Estados" Relationship="Self.FK_Usuarios_Estados" FromRole="Usuarios" ToRole="Estados" />
           <Property Name="cedula" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Usuarios_Estados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
@@ -111,6 +127,10 @@
           </AssociationSet>
           <EntitySet Name="Pedido" EntityType="DBMini_BandidasModel.Pedido" />
           <EntitySet Name="Productos" EntityType="DBMini_BandidasModel.Productos" />
+          <AssociationSet Name="FK_Pedido_Productos" Association="DBMini_BandidasModel.FK_Pedido_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Pedido">
           <Key>
@@ -119,6 +139,7 @@
           <Property Name="numPedido" Type="Int32" Nullable="false" />
           <Property Name="producto" Type="Int32" Nullable="false" />
           <Property Name="subtotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Productos" Relationship="DBMini_BandidasModel.FK_Pedido_Productos" FromRole="Pedido" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -130,7 +151,20 @@
           <Property Name="topping2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Pedido" Relationship="DBMini_BandidasModel.FK_Pedido_Productos" FromRole="Productos" ToRole="Pedido" />
         </EntityType>
+        <Association Name="FK_Pedido_Productos">
+          <End Type="DBMini_BandidasModel.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="DBMini_BandidasModel.Pedido" Role="Pedido" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="numPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -148,11 +182,11 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="DBMini_BandidasModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
-                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>

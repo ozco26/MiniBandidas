@@ -20,5 +20,7 @@ namespace MiniBandidas.Models
         public string topping2 { get; set; }
         public int cantidad { get; set; }
         public decimal precio { get; set; }
+    
+        public virtual Pedido Pedido { get; set; }
     }
 }

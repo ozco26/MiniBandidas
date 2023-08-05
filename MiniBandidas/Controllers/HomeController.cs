@@ -13,14 +13,14 @@ namespace MiniBandidas.Controllers
             return View();
         }
 
-        public ActionResult Menu()
+        public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Nosotros()
+        public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
