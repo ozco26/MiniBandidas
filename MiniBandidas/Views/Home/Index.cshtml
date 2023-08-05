@@ -1,12 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mini Bandidas";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tu página</title>
+    <title>Mini Bandidas</title>
     <style>
+
+       
+        body {
+            background-color: lightblue;
+        }
+
         .col-md-12 {
             text-align: center;
         }
@@ -41,6 +47,7 @@
             <div class="col-md-12">
                 <input type="button" class="btn btn-purple" value="Registrarse" onclick="document.location.href = '@Url.Content("~/Usuario/Registrarse/")'" />
                 <input type="button" class="btn btn-purple" value="Iniciar Sesión" onclick="document.location.href = '@Url.Content("~/Usuario/IniciarSesion/")'" />
+
             </div>
         </div>
     </div>

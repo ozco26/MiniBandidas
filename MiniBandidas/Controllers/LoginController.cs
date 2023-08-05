@@ -24,13 +24,13 @@ namespace MiniBandidas.Controllers
                 using (var db = new DBMini_BandidasEntities())
                 {
                     var lst = from d in db.Usuarios
-                              where d.email == txtUsuario && d.contraseña == txtPassword
+                              where d.email == txtUsuario && d.contrasenna == txtPassword
                               select d;
 
                     if (lst.Count() > 0)
                     {
                         Usuarios usuarioTO = lst.First();
-                        if (usuarioTO.estado == "Activo")
+                        if (usuarioTO.estado == "1")
                         {
                             Session["Usuario"] = usuarioTO;
                             ViewBag.UserSession = $"{usuarioTO.email}";

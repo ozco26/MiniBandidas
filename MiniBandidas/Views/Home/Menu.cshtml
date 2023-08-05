@@ -2,8 +2,41 @@
     ViewBag.Title = "Menu";
 }
 <main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
+    <head>
+        <title>Menu</title>
+        <style>
+            /* Estilos CSS para la tabla sin bordes */
+            table {
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: none;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Mi tabla sin bordes</h1>
+        <table>
+            <tr>
+                <th>Cajita de 4 minis</th>
+                <th>Brocheta</th>
+                <th>Individuales</th>
+            </tr>
+            <tr>
+                <td>Dato 1</td>
+                <td>Dato 2</td>
+                <td>Dato 3</td>
+            </tr>
+            <tr>
+                <td>Dato 4</td>
+                <td>Dato 5</td>
+                <td>Dato 6</td>
+            </tr>
+        </table>
+    </body>
+
+
 </main>

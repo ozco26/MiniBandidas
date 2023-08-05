@@ -6,7 +6,7 @@ namespace MiniBandidas.Filters
 {
     public class VerificarSesion : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+       /* public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var usuarioTo = HttpContext.Current.Session["Usuario"];
 
@@ -28,7 +28,7 @@ namespace MiniBandidas.Filters
 
             base.OnActionExecuting(filterContext);
         }
-
+       */
 
 
     }
