@@ -27,7 +27,7 @@ namespace MiniBandidas.Controllers
                                    cedula = u.cedula,
                                    nombre = u.nombre,
                                    apellido = u.apellido,
-                                   contraseña = u.contraseña,
+                                   contrasenna = u.contrasenna,
                                    telefono = u.telefono,
                                    estado = u.estado,
                                    Estados = e
@@ -51,7 +51,7 @@ namespace MiniBandidas.Controllers
                 usuarioTO.cedula = model.cedula;
                 usuarioTO.nombre = model.nombre;
                 usuarioTO.apellido = model.apellido;
-                usuarioTO.contraseña = model.contraseña;
+                usuarioTO.contrasenna = model.contrasenna;
                 usuarioTO.telefono = model.telefono;
                 usuarioTO.estado = model.estado;
                 db.Usuarios.Add(usuarioTO);

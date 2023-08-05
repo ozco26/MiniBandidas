@@ -20,7 +20,7 @@ namespace MiniBandidas.Models.ViewModels
         public string apellido { get; set; }
         [Required]
         [Display(Name = "Contraseña:")]
-        public string contraseña { get; set; }
+        public string contrasenna { get; set; }
         [Required]
         [Display(Name = "Telefono:")]
         public string telefono { get; set; }

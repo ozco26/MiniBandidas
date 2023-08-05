@@ -17,5 +17,7 @@ namespace MiniBandidas.Models
         public int numPedido { get; set; }
         public int producto { get; set; }
         public decimal subtotal { get; set; }
+    
+        public virtual Productos Productos { get; set; }
     }
 }
