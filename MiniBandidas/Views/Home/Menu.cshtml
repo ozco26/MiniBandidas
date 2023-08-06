@@ -14,11 +14,16 @@
             th, td {
                 border: none;
                 padding: 8px;
+                text-align: center;
+            }
+            /* Estilos CSS para el botón */
+            .quantity-button {
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
             }
         </style>
     </head>
     <body>
-        <h1>Mi tabla sin bordes</h1>
+        <h1>Nuestras opciones</h1>
         <table>
             <tr>
                 <th>Cajita de 4 minis</th>
@@ -26,9 +31,24 @@
                 <th>Individuales</th>
             </tr>
             <tr>
-                <td>Dato 1</td>
-                <td>Dato 2</td>
-                <td>Dato 3</td>
+                <td>
+                    <img src="~/Imagenes/4mini.png" alt="cuatro minis" width="200" height="200" />
+                </td>
+                <td>
+                    <img src="~/Imagenes/4mini.png" alt="brocheta" width="200" height="200" />
+                </td>
+                <td>
+                    <img src="~/Imagenes/INDIVIDUAL.png" alt="brocheta" width="200" height="200" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="quantity-button" onclick="decrease()">-</button>
+                    <span id="quantity">0</span>
+                    <button class="quantity-button" onclick="increase()">+</button>
+                </td>
+                <td>Dato 5</td>
+                <td>Dato 6</td>
             </tr>
             <tr>
                 <td>Dato 4</td>
