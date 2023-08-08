@@ -1,5 +1,4 @@
 ﻿using MiniBandidas.Models;
-using MiniBandidas.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace MiniBandidas.Controllers
                     if (lst.Count() > 0)
                     {
                         Usuarios usuarioTO = lst.First();
-                        if (usuarioTO.estado == "1")
+                        if ( usuarioTO.estado.Equals("1"))
                         {
                             Session["Usuario"] = usuarioTO;
                             ViewBag.UserSession = $"{usuarioTO.email}";

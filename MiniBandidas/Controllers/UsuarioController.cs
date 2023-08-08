@@ -53,13 +53,13 @@ namespace MiniBandidas.Controllers
                 usuarioTO.apellido = model.apellido;
                 usuarioTO.contrasenna = model.contrasenna;
                 usuarioTO.telefono = model.telefono;
-                usuarioTO.estado = model.estado;
+                usuarioTO.estado = "1";
                 db.Usuarios.Add(usuarioTO);
                 db.SaveChanges( );
             }
 
 
-            return Redirect(Url.Content("~/Home/Index"));
+            return Redirect(Url.Content("~/Login/Index/"));
         }
 
     }

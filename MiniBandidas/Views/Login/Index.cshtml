@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 
-<section class="vh-100 bg-dark">
+<<section class="vh-100 bg-dark">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -38,36 +38,42 @@
     </div>
 </section>
 
-@section Scripts{
+@section Scripts
 
+{
+
+    
     <script>
-        $(document).ready(function(){
-           // console.log("LLEGOO!!")
+        $(document).ready(function ()
+        {
+            console.log("LLEGOO!!")
+         
            // 1. Capturar los valores del login
-            $("#frm").submit(function (ev){
+            $("#frm").submit(function (ev)
+            {
                 ev.preventDefault();
-
+                console.log("LLEGOO!!2")
+                           
                 //2.Conectarnos al API
                 const URL = "@Url.Content("~/Login/Enter")";
-
+            
                 //3. Enviar los paramentros
                 let parametros = $(this).serialize();
 
-                $.post(URL, parametros, function (respuesta) {
-                    if (respuesta=="200") {
+                $.post(URL, parametros, function (respuesta)
+                {
+                    if (respuesta == "200")
+                    {
                         document.location.href = "@Url.Content("~/")"
-                    } else {
+                    }
+                    else
+                    {
                         alert(respuesta);
                     }
-
                 });
-
-
-
             });
         });
 
+        
     </script>
-
 }
-

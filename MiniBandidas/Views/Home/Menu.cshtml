@@ -18,8 +18,14 @@
             }
             /* Estilos CSS para el botón */
             .quantity-button {
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+                font-size: 20px;
+                padding: 5px 10px;
+                cursor: pointer;
+                border: none;
             }
+
+            .quantity-count {
+                font-size: 24px;
         </style>
     </head>
     <body>
@@ -43,9 +49,24 @@
             </tr>
             <tr>
                 <td>
-                    <button class="quantity-button" onclick="decrease()">-</button>
-                    <span id="quantity">0</span>
-                    <button class="quantity-button" onclick="increase()">+</button>
+                    <button class="quantity-button" onclick="decrease(1)">-</button>
+                    <span id="quantity1">0</span>
+                    <button class="quantity-button" onclick="increase(1)">+</button>
+                </td>
+                <td>
+                    <button class="quantity-button" onclick="decrease(2)">-</button>
+                    <span id="quantity2">0</span>
+                    <button class="quantity-button" onclick="increase(2)">+</button>
+                </td>
+                <td>
+                    <button class="quantity-button" onclick="decrease(3)">-</button>
+                    <span id="quantity3">0</span>
+                    <button class="quantity-button" onclick="increase(3)">+</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
                 </td>
                 <td>Dato 5</td>
                 <td>Dato 6</td>
@@ -60,3 +81,26 @@
 
 
 </main>
+@section Scripts
+    {
+    <script>
+        const quantities = [0, 0, 0];
+
+        function increase(index) {
+            quantities[index - 1]++;
+            updateQuantity(index);
+        }
+
+        function decrease(index) {
+            if (quantities[index - 1] > 0) {
+                quantities[index - 1]--;
+                updateQuantity(index);
+            }
+        }
+
+        function updateQuantity(index) {
+            const quantityElement = document.getElementById(`quantity${index}`);
+            quantityElement.textContent = quantities[index - 1];
+        }
+    </script>
+    }
