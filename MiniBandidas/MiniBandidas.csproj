@@ -186,11 +186,14 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Imagenes\4mini.png" />
-    <Content Include="Imagenes\brocheta.png" />
-    <Content Include="Imagenes\INDIVIDUAL.png" />
+    <Content Include="Imagenes\brocheta.png.png" />
+    <Content Include="Imagenes\caja4.png" />
+    <Content Include="Imagenes\individuales.png" />
+    <Content Include="Imagenes\paleta.png" />
+    <Content Include="Imagenes\dona.png" />
+    <Content Include="Imagenes\pastelito.png" />
+    <Content Include="Imagenes\instagram.png" />
     <Content Include="Imagenes\WA.png" />
-    <Content Include="Imagenes\Instagram.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

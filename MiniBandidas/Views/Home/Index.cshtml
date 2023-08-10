@@ -7,10 +7,23 @@
 <head>
     <title>Mini Bandidas</title>
     <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
 
-       
+            table.center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .espaciado-horizontal {
+            margin-left: 20px;
+            margin-right: 20px; /* Agrega espacio horizontalmente */
+        }
+
         body {
-            background-color: lightblue;
+            background-color: lavender;
         }
 
         .col-md-12 {
@@ -47,6 +60,23 @@
             <div class="col-md-12">
                 <input type="button" class="btn btn-purple" value="Registrarse" onclick="document.location.href = '@Url.Content("~/Usuario/Registrarse/")'" />
                 <input type="button" class="btn btn-purple" value="Iniciar Sesión" onclick="document.location.href = '@Url.Content("~/Login/Index//")'" />
+            </div>
+            <div>
+                <table class="center">
+                    <tr>
+                        <th>
+                            <img src="~/Imagenes/brocheta.png.png" width="200" height="200" />
+                        </th>
+                        <th>
+                            <img src="~/Imagenes/individuales.png" width="200" height="200" />
+                        </th>
+                        <th>
+                            <img src="~/Imagenes/caja4.png" width="200" height="200" />
+                        </th>
+
+
+                    </tr>
+                </table>
 
             </div>
         </div>

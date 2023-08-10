@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/07/2023 19:05:19
--- Generated from EDMX file: D:\GitHub\MiniBandidas\MiniBandidas\Models\Model1.edmx
+-- Date Created: 08/07/2023 22:43:20
+-- Generated from EDMX file: C:\Users\pa_or\Desktop\MiniBandidas\MiniBandidas\Models\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -47,7 +47,7 @@ GO
 
 -- Creating table 'Estados'
 CREATE TABLE [dbo].[Estados] (
-    [id] char(2)  NOT NULL,
+    [id] varchar(50)  NOT NULL,
     [descripcion] varchar(50)  NOT NULL
 );
 GO
@@ -58,7 +58,7 @@ CREATE TABLE [dbo].[Usuarios] (
     [nombre] varchar(20)  NOT NULL,
     [apellido] varchar(20)  NULL,
     [telefono] varchar(50)  NULL,
-    [estado] char(2)  NOT NULL,
+    [estado] varchar(50)  NOT NULL,
     [cedula] varchar(10)  NOT NULL,
     [contrasenna] varchar(50)  NOT NULL
 );
