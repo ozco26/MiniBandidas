@@ -6,7 +6,7 @@ namespace MiniBandidas.Filters
 {
     public class VerificarSesion : ActionFilterAttribute
     {
-       /* public override void OnActionExecuting(ActionExecutingContext filterContext)
+       public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var usuarioTo = HttpContext.Current.Session["Usuario"];
 
@@ -15,20 +15,21 @@ namespace MiniBandidas.Filters
             {
                 if (filterContext.Controller is LoginController == false)
                 {
-                    filterContext.HttpContext.Response.Redirect("~/Login/Index");
+                     
+                    //filterContext.HttpContext.Response.Redirect("~/Home/Index");
                 }
             }
             else
             {
                 if (filterContext.Controller is LoginController == true)
                 {
-                    filterContext.HttpContext.Response.Redirect("~/Home/Index");
+                    //filterContext.HttpContext.Response.Redirect("~/Home/Index");
                 }
             }
 
             base.OnActionExecuting(filterContext);
         }
-       */
+       
 
 
     }

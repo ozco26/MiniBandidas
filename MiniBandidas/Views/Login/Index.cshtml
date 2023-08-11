@@ -46,13 +46,10 @@
     <script>
         $(document).ready(function ()
         {
-            console.log("LLEGOO!!")
-         
-           // 1. Capturar los valores del login
+                   // 1. Capturar los valores del login
             $("#frm").submit(function (ev)
             {
                 ev.preventDefault();
-                console.log("LLEGOO!!2")
                            
                 //2.Conectarnos al API
                 const URL = "@Url.Content("~/Login/Enter")";
