@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 using System.Xml.Linq;
 
@@ -10,6 +12,9 @@ namespace MiniBandidas.Models.ViewModels
 {
     public class UsuarioViewModel
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
         [Required, EmailAddress]
         [Display(Name = "Email:")]
         public string email { get; set; }
@@ -27,11 +32,11 @@ namespace MiniBandidas.Models.ViewModels
         public string telefono { get; set; }
        /* [Required]
         [Display(Name = "Estado:")]*/
-        public string estado { get; set; }
+        public int estado { get; set; }
         [Required, MinLength(8)]
         [Display(Name = "Cedula:")]
         public string cedula { get; set; }
-
-       // public IEnumerable<SelectListItem> Estado { get; set; }
+        
+        public IEnumerable<SelectListItem> Estados { get; set; }
     }
 }

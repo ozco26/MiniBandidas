@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace MiniBandidas.Controllers
 {
     public class LoginController : Controller
@@ -17,19 +18,18 @@ namespace MiniBandidas.Controllers
 
         public ActionResult Enter(string txtUsuario, string txtPassword)
         {
-
             try
             {
-                using (var db = new DBMini_BandidasEntities())
+                using (var db = new DBMini_BandidasEntities2())
                 {
                     var lst = from d in db.Usuarios
                               where d.email == txtUsuario && d.contrasenna == txtPassword
                               select d;
-
+                    Usuarios usuarioTO = lst.First();
                     if (lst.Count() > 0)
                     {
-                        Usuarios usuarioTO = lst.First();
-                        if ( usuarioTO.estado.Equals("1"))
+
+                        if (usuarioTO.estado.Equals("1") || usuarioTO.estado.Equals("3"))
                         {
                             Session["Usuario"] = usuarioTO;
                             ViewBag.UserSession = $"{usuarioTO.email}";
@@ -45,22 +45,13 @@ namespace MiniBandidas.Controllers
                         return Content("Usuario invalido. Pruebe de nuevo");
 
                     }
-                }
-
-
-
-
+                }                
             }
             catch (Exception ex)
             {
                 return Content("Ocurrió un error. Detalle: " + ex.Message);
 
             }
-
-
-
-
-
-        }
+        }        
     }
 }

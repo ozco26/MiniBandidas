@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Pedido">
@@ -31,15 +31,24 @@
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="precio" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
+        <EntityType Name="rol_operacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="idOperacion" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="email" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="apellido" Type="varchar" MaxLength="20" />
           <Property Name="telefono" Type="varchar" MaxLength="50" />
-          <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="cedula" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="contrasenna" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -71,6 +80,7 @@
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol_operacion" EntityType="Self.rol_operacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Pedido_Productos" Association="Self.FK_Pedido_Productos">
             <End Role="Productos" EntitySet="Productos" />
@@ -85,77 +95,38 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBMini_BandidasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Estados">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="email" />
-          </Key>
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Estados" Relationship="Self.FK_Usuarios_Estados" FromRole="Usuarios" ToRole="Estados" />
-          <Property Name="cedula" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="contrasenna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_Usuarios_Estados">
-          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DBMini_BandidasEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Estados" EntityType="Self.Estados" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-          <AssociationSet Name="FK_Usuarios_Estados" Association="Self.FK_Usuarios_Estados">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <EntitySet Name="Pedido" EntityType="DBMini_BandidasModel.Pedido" />
-          <EntitySet Name="Productos" EntityType="DBMini_BandidasModel.Productos" />
-          <AssociationSet Name="FK_Pedido_Productos" Association="DBMini_BandidasModel.FK_Pedido_Productos">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="Pedido" EntitySet="Pedido" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Pedido">
           <Key>
             <PropertyRef Name="numPedido" />
           </Key>
           <Property Name="numPedido" Type="Int32" Nullable="false" />
           <Property Name="producto" Type="Int32" Nullable="false" />
-          <Property Name="subtotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Productos" Relationship="DBMini_BandidasModel.FK_Pedido_Productos" FromRole="Pedido" ToRole="Productos" />
+          <Property Name="subtotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Pedido_Productos" FromRole="Pedido" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="presentacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="topping1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="topping2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="presentacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topping1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topping2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Pedido" Relationship="DBMini_BandidasModel.FK_Pedido_Productos" FromRole="Productos" ToRole="Pedido" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Productos" FromRole="Productos" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="rol_operacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="idOperacion" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Pedido_Productos">
-          <End Type="DBMini_BandidasModel.Productos" Role="Productos" Multiplicity="1" />
-          <End Type="DBMini_BandidasModel.Pedido" Role="Pedido" Multiplicity="0..1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Productos">
               <PropertyRef Name="id" />
@@ -165,56 +136,116 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="DBMini_BandidasEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="rol_operacion" EntityType="Self.rol_operacion" />
+          <AssociationSet Name="FK_Pedido_Productos" Association="Self.FK_Pedido_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <EntitySet Name="Estados" EntityType="DBMini_BandidasModel.Estados" />
+          <EntitySet Name="Usuarios" EntityType="DBMini_BandidasModel.Usuarios" />
+          <AssociationSet Name="FK_Usuarios_Estados" Association="DBMini_BandidasModel.FK_Usuarios_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="DBMini_BandidasModel.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenna" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Estados" Relationship="DBMini_BandidasModel.FK_Usuarios_Estados" FromRole="Usuarios" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FK_Usuarios_Estados">
+          <End Type="DBMini_BandidasModel.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="DBMini_BandidasModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DBMini_BandidasModelStoreContainer" CdmEntityContainer="DBMini_BandidasEntities">
-    <EntitySetMapping Name="Estados">
-      <EntityTypeMapping TypeName="IsTypeOf(DBMini_BandidasModel.Estados)">
-        <MappingFragment StoreEntitySet="Estados">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Usuarios">
-      <EntityTypeMapping TypeName="IsTypeOf(DBMini_BandidasModel.Usuarios)">
-        <MappingFragment StoreEntitySet="Usuarios">
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellido" ColumnName="apellido" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="cedula" ColumnName="cedula" />
-          <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pedido">
-      <EntityTypeMapping TypeName="IsTypeOf(DBMini_BandidasModel.Pedido)">
-        <MappingFragment StoreEntitySet="Pedido">
-          <ScalarProperty Name="numPedido" ColumnName="numPedido" />
-          <ScalarProperty Name="producto" ColumnName="producto" />
-          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Productos">
-      <EntityTypeMapping TypeName="IsTypeOf(DBMini_BandidasModel.Productos)">
-        <MappingFragment StoreEntitySet="Productos">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="presentacion" ColumnName="presentacion" />
-          <ScalarProperty Name="topping1" ColumnName="topping1" />
-          <ScalarProperty Name="topping2" ColumnName="topping2" />
-          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-          <ScalarProperty Name="precio" ColumnName="precio" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBMini_BandidasModelStoreContainer" CdmEntityContainer="DBMini_BandidasEntities2">
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="numPedido" ColumnName="numPedido" />
+                <ScalarProperty Name="producto" ColumnName="producto" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="presentacion" ColumnName="presentacion" />
+                <ScalarProperty Name="topping1" ColumnName="topping1" />
+                <ScalarProperty Name="topping2" ColumnName="topping2" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol_operacion">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.rol_operacion">
+              <MappingFragment StoreEntitySet="rol_operacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="idOperacion" ColumnName="idOperacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -228,7 +259,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

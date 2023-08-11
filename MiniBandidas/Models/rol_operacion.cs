@@ -12,18 +12,10 @@ namespace MiniBandidas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Estados
+    public partial class rol_operacion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Estados()
-        {
-            this.Usuarios = new HashSet<Usuarios>();
-        }
-    
         public int id { get; set; }
-        public string descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios { get; set; }
+        public int idRol { get; set; }
+        public int idOperacion { get; set; }
     }
 }

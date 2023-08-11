@@ -1,4 +1,6 @@
 ﻿using MiniBandidas.Controllers;
+using MiniBandidas.Models;
+using System.Security.AccessControl;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,9 +10,9 @@ namespace MiniBandidas.Filters
     {
        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+
+            /*
             var usuarioTo = HttpContext.Current.Session["Usuario"];
-
-
             if (usuarioTo == null)
             {
                 if (filterContext.Controller is LoginController == false)
@@ -26,8 +28,7 @@ namespace MiniBandidas.Filters
                     //filterContext.HttpContext.Response.Redirect("~/Home/Index");
                 }
             }
-
-            base.OnActionExecuting(filterContext);
+            base.OnActionExecuting(filterContext);*/
         }
        
 

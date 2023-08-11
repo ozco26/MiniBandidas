@@ -1,0 +1,44 @@
+﻿@model MiniBandidas.Models.ViewModels.UsuarioViewModel
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<h2>Editar Usuario </h2>
+<hr />
+
+<div class=" row">
+    <div class=" col-10">
+        @using (Html.BeginForm("Edit", "Usuario", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(d => d.nombre)
+            @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.apellido)
+            @Html.TextBoxFor(d => d.apellido, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.telefono)
+            @Html.TextBoxFor(d => d.telefono, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.cedula)
+            @Html.TextBoxFor(d => d.cedula, new { @class = "form-control" })
+
+            @Html.LabelFor(d => d.contrasenna)
+            @Html.TextBoxFor(d => d.contrasenna, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.contrasenna, "", new { @class = "text-danger d-block mb-2" })
+
+            @Html.LabelFor(d => d.estado)
+            @Html.DropDownListFor(d => d.estado,
+                                  Model.Estados,
+                                  new { @class = "form-select" })
+
+            <div class="mt-2">
+                <input type="submit" class="btn btn-primary" value="Guardar" />
+                <input type="button" class="btn btn-secondary" value="Regresar"
+                       onclick="document.location.href = '@Url.Content("~/usuario/Index")'" />
+            </div>
+
+        }
+    </div>
+</div>

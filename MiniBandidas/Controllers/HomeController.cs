@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiniBandidas.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,7 @@ namespace MiniBandidas.Controllers
         {
             return View();
         }
-
+        [autorizacionUsuario(idOperacion:1)]
         public ActionResult Menu()
         {
             ViewBag.Message = "Your application description page.";

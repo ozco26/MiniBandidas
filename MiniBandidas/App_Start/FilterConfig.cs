@@ -9,7 +9,7 @@ namespace MiniBandidas
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new VerificarSesion());    
+            //filters.Add(new VerificarSesion());    
         }
     }
 }
