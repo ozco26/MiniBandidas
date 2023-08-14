@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/13/2023 22:30:50
--- Generated from EDMX file: C:\Users\Luis Marín\source\repos\ProyectoMiniBandidas\MiniBandidas\Models\Model1.edmx
+-- Date Created: 08/13/2023 21:33:00
+-- Generated from EDMX file: C:\Users\josse\source\repos\MiniBandidas\MiniBandidas\Models\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -36,6 +36,9 @@ IF OBJECT_ID(N'[dbo].[Pedido]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Productos]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Productos];
+GO
+IF OBJECT_ID(N'[dbo].[rol_operacion]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[rol_operacion];
 GO
 IF OBJECT_ID(N'[dbo].[Usuarios]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Usuarios];
