@@ -1,36 +1,47 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Menu";
 }
-<main aria-labelledby="title">
 
-    <head>
-        <title>Menu</title>
-        <style>
-            /* Estilos CSS para la tabla sin bordes */
-            table {
-                border-collapse: collapse;
-            }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
 
-            th, td {
-                border: none;
-                padding: 8px;
-                text-align: center;
-            }
-            /* Estilos CSS para el botón */
-            .quantity-button {
-                font-size: 20px;
-                padding: 5px 10px;
-                cursor: pointer;
-                border: none;
-            }
+        th, td {
+            border: none;
+            padding: 8px;
+            text-align: center;
+        }
 
-            .quantity-count {
-                font-size: 24px;
-            }
-        </style>
-    </head>
-</main>
+
+        .quantity-button {
+            font-size: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .quantity-count {
+            font-size: 24px;
+        }
+
+
+        .btn-pedido {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
 <body>
     <h1>Nuestras opciones</h1>
     <table>
@@ -48,44 +59,37 @@
             </td>
             <td>
                 <img src="~/Imagenes/individuales.png" alt="brocheta" width="200" height="200" />
+            </td>
+        </tr>
+        <tr>
+            <td>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button class="quantity-button" onclick="decrease(1)">-</button>
-                    <span id="quantity1">0</span>
-                    <button class="quantity-button" onclick="increase(1)">+</button>
-                </td>
-                <td>
-                    <button class="quantity-button" onclick="decrease(2)">-</button>
-                    <span id="quantity2">0</span>
-                    <button class="quantity-button" onclick="increase(2)">+</button>
-                </td>
-                <td>
-                    <button class="quantity-button" onclick="decrease(3)">-</button>
-                    <span id="quantity3">0</span>
-                    <button class="quantity-button" onclick="increase(3)">+</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>Dato 5</td>
-                <td>Dato 6</td>
-            </tr>
-            <tr>
-                <td>Dato 4</td>
-                <td>Dato 5</td>
-                <td>Dato 6</td>
-            </tr>
-        </table>
-    </body>
+                <button class="quantity-button" onclick="decrease(1)">-</button>
+                <span id="quantity1">0</span>
+                <button class="quantity-button" onclick="increase(1)">+</button>
+            </td>
+            <td>
 
+                <button class="quantity-button" onclick="decrease(2)">-</button>
+                <span id="quantity2">0</span>
+                <button class="quantity-button" onclick="increase(2)">+</button>
+            </td>
+            <td>
+                <button class="quantity-button" onclick="decrease(3)">-</button>
+                <span id="quantity3">0</span>
+                <button class="quantity-button" onclick="increase(3)">+</button>
+            </td>
+        </tr>
+        
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="~Pedido" class="btn-pedido">Hacer Pedido</a>
+            </td>
+        </tr>
+    </table>
 
-
-@section Scripts
-    {
     <script>
         const quantities = [0, 0, 0];
 
@@ -106,4 +110,5 @@
             quantityElement.textContent = quantities[index - 1];
         }
     </script>
-}
+</body>
+</html>
