@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title MiniBandidas </title>
@@ -24,8 +24,10 @@
                     <li>@Html.ActionLink("Carrito de Compras", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Administrador", "Index", "Administrador", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
+                <div class="d-flex">
+                    <a href="@Url.Action("LogOff","Logout")" class="btn btn-outline-primary" title="Cerrar Sesion">Cerrar Sesion</a>
+                </div>
             </div>
-        </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
