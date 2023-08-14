@@ -13,7 +13,7 @@ namespace MiniBandidas.Controllers
         {
             return View();
         }
-        [autorizacionUsuario(idOperacion:1)]
+        [autorizacionUsuario(idOperacion: (1))]
         public ActionResult Menu()
         {
             ViewBag.Message = "Your application description page.";

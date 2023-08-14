@@ -11,7 +11,7 @@ namespace MiniBandidas.Filters
     public class autorizacionUsuario : AuthorizeAttribute
     {
         private Usuarios TOUsuario;
-        private DBMini_BandidasEntities2 db = new DBMini_BandidasEntities2();
+        private DBMini_BandidasEntities db = new DBMini_BandidasEntities();
         private int idOperacion ;
 
         public autorizacionUsuario(int idOperacion = 0) => this.idOperacion = idOperacion;

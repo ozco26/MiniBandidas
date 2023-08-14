@@ -10,7 +10,7 @@ namespace MiniBandidas.Controllers
     public class AdministradorController : Controller
     {
         // GET: Administrador
-        //[autorizacionUsuario(idOperacion: 3)]
+        [autorizacionUsuario(idOperacion: 3)]
         public ActionResult Index()
         {
             return View();

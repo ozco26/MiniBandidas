@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using MiniBandidas.Filters;
 using MiniBandidas.Models;
 using MiniBandidas.Models.TableViewModels;
 using MiniBandidas.Models.ViewModels;
@@ -16,10 +17,11 @@ namespace MiniBandidas.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
+        [autorizacionUsuario(idOperacion: (3))]
         public ActionResult Index()
         {
             List<UsuarioTableViewModel> lstUsuarios = null;
-            using (DBMini_BandidasEntities2 db = new DBMini_BandidasEntities2())
+            using (DBMini_BandidasEntities db = new DBMini_BandidasEntities())
             {
                 lstUsuarios = (from u in db.Usuarios
                                join e in db.Estados
@@ -53,7 +55,7 @@ namespace MiniBandidas.Controllers
             //model.estado = 1; //asigna a la varible estado valor 1 para poder llenenar el valor estado oculto en la vista y que no reviente en
 
             if (!ModelState.IsValid) return View(model);
-            using (var db = new DBMini_BandidasEntities2())
+            using (var db = new DBMini_BandidasEntities())
             {
                
                 Usuarios usuarioTO = new Usuarios();
@@ -85,9 +87,10 @@ namespace MiniBandidas.Controllers
         }
 
         [HttpPost]
+        [autorizacionUsuario(idOperacion: (3))]
         public ActionResult Delete(int id )
         {
-            using (var db = new DBMini_BandidasEntities2())
+            using (var db = new DBMini_BandidasEntities())
             {
                 var usuarioTO = db.Usuarios.Find(id);
                 db.Entry(usuarioTO).State = System.Data.Entity.EntityState.Deleted;
@@ -97,10 +100,11 @@ namespace MiniBandidas.Controllers
         }
 
         [HttpGet]
+        [autorizacionUsuario(idOperacion: (3))]
         public ActionResult Edit(int id )
         {
             UsuarioViewModel model = new UsuarioViewModel();
-            using (var db = new DBMini_BandidasEntities2())
+            using (var db = new DBMini_BandidasEntities())
             {
                 var usuarioTO = db.Usuarios.Find(id);
                 var estadosTO = db.Estados;
@@ -117,7 +121,7 @@ namespace MiniBandidas.Controllers
             }
             return View(model);
         }
-
+        [autorizacionUsuario(idOperacion: (3))]
         [HttpPost]
         public ActionResult Edit(UsuarioViewModel model)
         {
@@ -127,7 +131,7 @@ namespace MiniBandidas.Controllers
                 return View(model);
             }
 
-            using (var db = new DBMini_BandidasEntities2())
+            using (var db = new DBMini_BandidasEntities())
             {
                 var usuarioTO = db.Usuarios.Find(model.id);
                 usuarioTO.email = model.email;

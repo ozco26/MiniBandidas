@@ -20,7 +20,7 @@ namespace MiniBandidas.Controllers
         {
             try
             {
-                using (var db = new DBMini_BandidasEntities2())
+                using (var db = new DBMini_BandidasEntities())
                 {
                     var lst = from d in db.Usuarios
                               where d.email == txtUsuario && d.contrasenna == txtPassword
@@ -29,7 +29,7 @@ namespace MiniBandidas.Controllers
                     if (lst.Count() > 0)
                     {
 
-                        if (usuarioTO.estado.Equals("1") || usuarioTO.estado.Equals("3"))
+                        if (usuarioTO.estado== 1 || usuarioTO.estado== 3)
                         {
                             Session["Usuario"] = usuarioTO;
                             ViewBag.UserSession = $"{usuarioTO.email}";
