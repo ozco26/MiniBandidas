@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9e4105f2d7f2454389992cc6dd7bbd39" Name="Diagram1">
         <EntityTypeShape EntityType="DBMini_BandidasModel.Estados" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Pedido" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Pedido" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DBMini_BandidasModel.Productos" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DBMini_BandidasModel.rol_operacion" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBMini_BandidasModel.Usuarios" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
