@@ -52,8 +52,11 @@
         </div>
         <div class="row button-container">
             <div class="col-md-12">
-                <input type="button" class="btn btn-purple" value="Registrarse" onclick="document.location.href = '@Url.Content("~/Usuario/Registrarse/~")'" />
-                <input type="button" id="loguearse" class="btn btn-purple" value="Iniciar Sesión" onclick="document.location.href = '@Url.Content("~/Login/Index/~")'" />
+                @if (Session["LoggedIn"] == null)
+                {
+                    <input type="button" class="btn btn-purple" value="Registrarse" onclick="document.location.href = '@Url.Content("~/Usuario/Registrarse/~")'" />
+                    <input type="button" id="loguearse" class="btn btn-purple" value="Iniciar Sesión" onclick="document.location.href = '@Url.Content("~/Login/Index/~")'" />
+                }
             </div>
             <div>
                 &nbsp;
@@ -68,14 +71,6 @@
                         <th>
                             <img src="~/Imagenes/caja4.png" width="200" height="200" />
                         </th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>
-                            <input type="button" id="Admin" class="btn btn-purple" value="Administrador" onclick="document.location.href = '@Url.Content("~/Administrador/Index/~")'" />
-                        <th/>
-                        <th></th>
-                    </tr>
                 </table>
 
             </div>

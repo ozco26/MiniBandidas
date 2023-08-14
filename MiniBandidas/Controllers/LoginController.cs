@@ -25,13 +25,14 @@ namespace MiniBandidas.Controllers
                     var lst = from d in db.Usuarios
                               where d.email == txtUsuario && d.contrasenna == txtPassword
                               select d;
-                    Usuarios usuarioTO = lst.First();
-                    if (lst.Count() > 0)
+                    Usuarios usuarioTO = lst.FirstOrDefault(); // Cambio aquí
+                    if (usuarioTO != null) // Cambio aquí
                     {
 
                         if (usuarioTO.estado== 1 || usuarioTO.estado== 3)
                         {
                             Session["Usuario"] = usuarioTO;
+                            Session["LoggedIn"] = true; // Agregar esta línea para marcar que ha iniciado sesión
                             ViewBag.UserSession = $"{usuarioTO.email}";
                             return Content("200");
                         }
