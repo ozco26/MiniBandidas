@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Logout.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoAutorizadoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
