@@ -133,11 +133,15 @@
     <Compile Include="Controllers\Logout.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoAutorizadoController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filters\autorizacionUsuario.cs" />
     <Compile Include="Filters\VerificarSesion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallePedido.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estados.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -160,16 +164,21 @@
     <Compile Include="Models\Pedido.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Productos.cs">
+    <Compile Include="Models\Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rol_operacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TableViewModels\PedidoTableViewModel.cs" />
     <Compile Include="Models\TableViewModels\UsuarioTableViewModel.cs" />
+    <Compile Include="Models\Topping.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\PedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -259,6 +268,7 @@
     <Content Include="Views\Shared\_LayoutAdministrador.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Pedido\Detalle_Pedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

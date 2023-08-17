@@ -26,9 +26,11 @@ namespace MiniBandidas.Models
         }
     
         public virtual DbSet<Estados> Estados { get; set; }
-        public virtual DbSet<Pedido> Pedido { get; set; }
-        public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<rol_operacion> rol_operacion { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<DetallePedido> DetallePedido { get; set; }
+        public virtual DbSet<Pedido> Pedido { get; set; }
+        public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Topping> Topping { get; set; }
     }
 }

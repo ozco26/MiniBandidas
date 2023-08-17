@@ -12,19 +12,21 @@ namespace MiniBandidas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pedido
+    public partial class Topping
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pedido()
+        public Topping()
         {
             this.DetallePedido = new HashSet<DetallePedido>();
+            this.DetallePedido1 = new HashSet<DetallePedido>();
         }
     
-        public int numPedido { get; set; }
-        public decimal subtotal { get; set; }
-        public decimal total { get; set; }
+        public int id { get; set; }
+        public string nomTopping { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePedido> DetallePedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetallePedido> DetallePedido1 { get; set; }
     }
 }

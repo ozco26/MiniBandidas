@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBMini_BandidasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numPedido" Type="int" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="idTopping1" Type="int" Nullable="false" />
+          <Property Name="idTopping2" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Estados">
           <Key>
             <PropertyRef Name="id" />
@@ -16,20 +27,17 @@
           <Key>
             <PropertyRef Name="numPedido" />
           </Key>
-          <Property Name="numPedido" Type="int" Nullable="false" />
-          <Property Name="producto" Type="int" Nullable="false" />
-          <Property Name="subtotal" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="numPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subtotal" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="19" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityType Name="Productos">
+        <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="presentacion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="topping1" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="topping2" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="nomProducto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="19" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="rol_operacion">
           <Key>
@@ -38,6 +46,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idRol" Type="int" Nullable="false" />
           <Property Name="idOperacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomTopping" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -52,15 +67,51 @@
           <Property Name="cedula" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="contrasenna" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Pedido_Productos">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+        <Association Name="FK_DetallePedido_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Productos">
+            <Principal Role="Pedido">
+              <PropertyRef Name="numPedido" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="numPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="numPedido" />
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Topping1">
+          <End Role="Topping" Type="Self.Topping" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topping">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idTopping1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Topping2">
+          <End Role="Topping" Type="Self.Topping" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topping">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idTopping2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -77,14 +128,28 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBMini_BandidasModelStoreContainer">
+          <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rol_operacion" EntityType="Self.rol_operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topping" EntityType="Self.Topping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Pedido_Productos" Association="Self.FK_Pedido_Productos">
-            <End Role="Productos" EntitySet="Productos" />
+          <AssociationSet Name="FK_DetallePedido_Pedido" Association="Self.FK_DetallePedido_Pedido">
             <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Producto" Association="Self.FK_DetallePedido_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Topping1" Association="Self.FK_DetallePedido_Topping1">
+            <End Role="Topping" EntitySet="Topping" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Topping2" Association="Self.FK_DetallePedido_Topping2">
+            <End Role="Topping" EntitySet="Topping" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Estados" Association="Self.FK_Usuarios_Estados">
             <End Role="Estados" EntitySet="Estados" />
@@ -102,27 +167,6 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
-        </EntityType>
-        <EntityType Name="Pedido">
-          <Key>
-            <PropertyRef Name="numPedido" />
-          </Key>
-          <Property Name="numPedido" Type="Int32" Nullable="false" />
-          <Property Name="producto" Type="Int32" Nullable="false" />
-          <Property Name="subtotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK_Pedido_Productos" FromRole="Pedido" ToRole="Productos" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="presentacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topping1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="topping2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Productos" FromRole="Productos" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="rol_operacion">
           <Key>
@@ -158,33 +202,125 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pedido_Productos">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="numPedido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DBMini_BandidasEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Estados" EntityType="Self.Estados" />
-          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
-          <EntitySet Name="Productos" EntityType="Self.Productos" />
           <EntitySet Name="rol_operacion" EntityType="Self.rol_operacion" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <AssociationSet Name="FK_Usuarios_Estados" Association="Self.FK_Usuarios_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pedido_Productos" Association="Self.FK_Pedido_Productos">
-            <End Role="Productos" EntitySet="Productos" />
+          <EntitySet Name="DetallePedido" EntityType="DBMini_BandidasModel.DetallePedido" />
+          <EntitySet Name="Pedido" EntityType="DBMini_BandidasModel.Pedido" />
+          <EntitySet Name="Producto" EntityType="DBMini_BandidasModel.Producto" />
+          <EntitySet Name="Topping" EntityType="DBMini_BandidasModel.Topping" />
+          <AssociationSet Name="FK_DetallePedido_Pedido" Association="DBMini_BandidasModel.FK_DetallePedido_Pedido">
             <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Producto" Association="DBMini_BandidasModel.FK_DetallePedido_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Topping1" Association="DBMini_BandidasModel.FK_DetallePedido_Topping1">
+            <End Role="Topping" EntitySet="Topping" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePedido_Topping2" Association="DBMini_BandidasModel.FK_DetallePedido_Topping2">
+            <End Role="Topping" EntitySet="Topping" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numPedido" Type="Int32" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="idTopping1" Type="Int32" Nullable="false" />
+          <Property Name="idTopping2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="DBMini_BandidasModel.FK_DetallePedido_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="DBMini_BandidasModel.FK_DetallePedido_Producto" FromRole="DetallePedido" ToRole="Producto" />
+          <NavigationProperty Name="Topping" Relationship="DBMini_BandidasModel.FK_DetallePedido_Topping1" FromRole="DetallePedido" ToRole="Topping" />
+          <NavigationProperty Name="Topping1" Relationship="DBMini_BandidasModel.FK_DetallePedido_Topping2" FromRole="DetallePedido" ToRole="Topping" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="numPedido" />
+          </Key>
+          <Property Name="numPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subtotal" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="total" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
+          <NavigationProperty Name="DetallePedido" Relationship="DBMini_BandidasModel.FK_DetallePedido_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomProducto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
+          <NavigationProperty Name="DetallePedido" Relationship="DBMini_BandidasModel.FK_DetallePedido_Producto" FromRole="Producto" ToRole="DetallePedido" />
+        </EntityType>
+        <EntityType Name="Topping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomTopping" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DetallePedido" Relationship="DBMini_BandidasModel.FK_DetallePedido_Topping1" FromRole="Topping" ToRole="DetallePedido" />
+          <NavigationProperty Name="DetallePedido1" Relationship="DBMini_BandidasModel.FK_DetallePedido_Topping2" FromRole="Topping" ToRole="DetallePedido" />
+        </EntityType>
+        <Association Name="FK_DetallePedido_Pedido">
+          <End Type="DBMini_BandidasModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="DBMini_BandidasModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="numPedido" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="numPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Producto">
+          <End Type="DBMini_BandidasModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="DBMini_BandidasModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Topping1">
+          <End Type="DBMini_BandidasModel.Topping" Role="Topping" Multiplicity="1" />
+          <End Type="DBMini_BandidasModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topping">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idTopping1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePedido_Topping2">
+          <End Type="DBMini_BandidasModel.Topping" Role="Topping" Multiplicity="1" />
+          <End Type="DBMini_BandidasModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topping">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idTopping2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -196,27 +332,6 @@
         <MappingFragment StoreEntitySet="Estados">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pedido">
-      <EntityTypeMapping TypeName="IsTypeOf(DBMini_BandidasModel.Pedido)">
-        <MappingFragment StoreEntitySet="Pedido">
-          <ScalarProperty Name="numPedido" ColumnName="numPedido" />
-          <ScalarProperty Name="producto" ColumnName="producto" />
-          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Productos">
-      <EntityTypeMapping TypeName="IsTypeOf(DBMini_BandidasModel.Productos)">
-        <MappingFragment StoreEntitySet="Productos">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="presentacion" ColumnName="presentacion" />
-          <ScalarProperty Name="topping1" ColumnName="topping1" />
-          <ScalarProperty Name="topping2" ColumnName="topping2" />
-          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-          <ScalarProperty Name="precio" ColumnName="precio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -243,6 +358,44 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="DetallePedido">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.DetallePedido">
+              <MappingFragment StoreEntitySet="DetallePedido">
+                <ScalarProperty Name="idTopping2" ColumnName="idTopping2" />
+                <ScalarProperty Name="idTopping1" ColumnName="idTopping1" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="numPedido" ColumnName="numPedido" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="numPedido" ColumnName="numPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nomProducto" ColumnName="nomProducto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topping">
+            <EntityTypeMapping TypeName="DBMini_BandidasModel.Topping">
+              <MappingFragment StoreEntitySet="Topping">
+                <ScalarProperty Name="nomTopping" ColumnName="nomTopping" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
