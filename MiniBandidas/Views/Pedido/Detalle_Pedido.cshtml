@@ -7,36 +7,26 @@
 <div class="table-responsive">
     <table class="table table-hover">
         <tbody>
+            <tr>
+                
+                <th>Pedido</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Topping1</th>
+                <th>Topping2</th>
+            </tr>
             @foreach (var pedido in Model)
             {
+
                 <tr>
-                    <th>#</th>
-                    <td>@pedido.id</td>
-                </tr>
-                <tr>
-                    <th>Pedido</th>
+                    
                     <td>@pedido.Pedido.numPedido</td>
-                </tr>
-                <tr>
-                    <th>Producto</th>
                     <td>@pedido.Producto.nomProducto</td>
-                </tr>
-                <tr>
-                    <th>Cantidad</th>
                     <td>@pedido.cantidad</td>
-                </tr>
-                <tr>
-                    <th>Topping1</th>
                     <td>@pedido.Topping1.nomTopping</td>
-                </tr>
-                <tr>
-                    <th>Topping2</th>
                     <td>@pedido.Topping2.nomTopping</td>
                 </tr>
-                <tr>
-                    <th></th>
-                    <td></td>
-                </tr>
+
             }
         </tbody>
     </table>

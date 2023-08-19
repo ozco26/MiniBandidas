@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MiniBandidas/Models/Model1.Designer.cs
+/MiniBandidas/Models/Model1.edmx
+/MiniBandidas/Models/Model1.edmx.sql

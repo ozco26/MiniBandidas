@@ -117,7 +117,7 @@ namespace MiniBandidas.Controllers
                 model.contrasenna = usuarioTO.contrasenna;
                 model.telefono = usuarioTO.telefono;
                 model.estado = usuarioTO.estado;
-                model.Estados = GetEstadoSelectItem(estadosTO);
+
             }
             return View(model);
         }
@@ -148,18 +148,6 @@ namespace MiniBandidas.Controllers
         }
 
         
-        private IEnumerable<SelectListItem> GetEstadoSelectItem(IEnumerable<Estados> elementos)
-        {
-            var selectList = new List<SelectListItem>();
-            foreach (var elemento in elementos)
-            {
-                selectList.Add(new SelectListItem
-                {
-                    Value = elemento.id.ToString(),
-                    Text = elemento.id + " | " + elemento.descripcion
-                });
-            }
-            return selectList;
-        }
+        
     }
 }

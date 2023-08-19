@@ -24,12 +24,21 @@
             @Html.LabelFor(d => d.cedula)
             @Html.TextBoxFor(d => d.cedula, new { @class = "form-control" })
 
+            @Html.LabelFor(d => d.email)
+            @Html.TextBoxFor(d => d.email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.email, "", new { @class = "text-danger d-block mb-2" })
+
             @Html.LabelFor(d => d.contrasenna)
             @Html.TextBoxFor(d => d.contrasenna, new { @class = "form-control" })
             @Html.ValidationMessageFor(d => d.contrasenna, "", new { @class = "text-danger d-block mb-2" })
 
             @Html.LabelFor(d => d.estado)
-            @Html.DropDownListFor(model => model.estado, (IEnumerable<SelectListItem>)ViewData["estado"], new { @class = "form-control" })
+            @Html.DropDownListFor(d => d.estado,
+                      new List<SelectListItem> {
+                   new SelectListItem { Value = "1", Text = "Activo" },
+                   new SelectListItem { Value = "2", Text = "Inactivo" },
+                   new SelectListItem { Value = "3", Text = "Admisntrador" },
+                     }, new { @class = "myselect d-block mb-2" })
 
             <div class="mt-2">
                 <input type="submit" class="btn btn-primary" value="Guardar" />
