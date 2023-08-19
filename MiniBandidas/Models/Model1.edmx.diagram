@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="DBMini_BandidasModel.DetallePedido" Width="1.5" PointX="3" PointY="5" />
         <EntityTypeShape EntityType="DBMini_BandidasModel.Pedido" Width="1.5" PointX="5.25" PointY="5" />
         <EntityTypeShape EntityType="DBMini_BandidasModel.Producto" Width="1.5" PointX="0.75" PointY="7" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Topping" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Topping" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Pedido" />
         <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Producto" />
         <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Topping1" />
