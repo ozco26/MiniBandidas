@@ -13,10 +13,10 @@ namespace MiniBandidas.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBMini_BandidasEntities : DbContext
+    public partial class DBMini_BandidasEntities1 : DbContext
     {
-        public DBMini_BandidasEntities()
-            : base("name=DBMini_BandidasEntities")
+        public DBMini_BandidasEntities1()
+            : base("name=DBMini_BandidasEntities1")
         {
         }
     
@@ -25,12 +25,12 @@ namespace MiniBandidas.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Estados> Estados { get; set; }
-        public virtual DbSet<rol_operacion> rol_operacion { get; set; }
-        public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<DetallePedido> DetallePedido { get; set; }
+        public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<rol_operacion> rol_operacion { get; set; }
         public virtual DbSet<Topping> Topping { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

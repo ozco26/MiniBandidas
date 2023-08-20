@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MiniBandidas.Controllers
 {
-    public class PedidoController : Controller
+    public class DetallePedidoController : Controller
     {
 
         int ultimoNumPedido; //mantiene el numero de pedido más alto
@@ -16,7 +16,7 @@ namespace MiniBandidas.Controllers
         // GET: Pedido
         public ActionResult Detalle_Pedido()
         {
-            List<PedidoTableViewModel> lstPedido = null;
+            List<DetallePedidoTableViewModel> lstPedido = null;
             using (DBMini_BandidasEntities db = new DBMini_BandidasEntities())
             {
                 lstPedido = (from u in db.DetallePedido
@@ -30,7 +30,7 @@ namespace MiniBandidas.Controllers
                              on u.idTopping2 equals h.id
 
                              orderby u.id
-                             select new PedidoTableViewModel
+                             select new DetallePedidoTableViewModel
                              {
                                  id = u.id,
                                  numPedido = u.numPedido,

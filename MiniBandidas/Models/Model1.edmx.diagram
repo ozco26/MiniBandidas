@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9e4105f2d7f2454389992cc6dd7bbd39" Name="Diagram1">
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Estados" Width="1.5" PointX="0.875" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.rol_operacion" Width="1.5" PointX="5.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Usuarios" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="daa3c1bbf5d9424a9da219b39f16c436" Name="Diagram1">
+        <EntityTypeShape EntityType="DBMini_BandidasModel.DetallePedido" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Estados" Width="1.5" PointX="2.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Pedido" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Producto" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.rol_operacion" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Topping" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBMini_BandidasModel.Usuarios" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Topping1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Topping2" ManuallyRouted="false" />
         <AssociationConnector Association="DBMini_BandidasModel.FK_Usuarios_Estados" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.DetallePedido" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Pedido" Width="1.5" PointX="0.75" PointY="8.25" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Producto" Width="1.5" PointX="0.75" PointY="10.875" />
-        <EntityTypeShape EntityType="DBMini_BandidasModel.Topping" Width="1.5" PointX="0.75" PointY="5.5" />
-        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Pedido" />
-        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Producto" />
-        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Topping1" />
-        <AssociationConnector Association="DBMini_BandidasModel.FK_DetallePedido_Topping2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
