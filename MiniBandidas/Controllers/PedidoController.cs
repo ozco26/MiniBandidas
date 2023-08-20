@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MiniBandidas.Models.ViewModels;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace MiniBandidas.Controllers
 {
@@ -31,11 +34,43 @@ namespace MiniBandidas.Controllers
 
         }
 
-        public ActionResult CrearPedido() 
+        [HttpPost]
+        public ActionResult Crear_registro(PedidoViewModel model)
         {
-            
-            return View();
-        
+            using (var db = new DBMini_BandidasEntities())
+            {
+                Pedido pedidoTO = new Pedido();
+
+                var ultimoRegistro = db.Pedido.OrderByDescending(r => r.numPedido).FirstOrDefault();
+
+                if (ultimoRegistro != null)
+                {
+                    pedidoTO.numPedido = ultimoRegistro.numPedido + 1; // Asigna el siguiente número de pedido
+                }
+                else
+                {
+                    pedidoTO.numPedido = 1; // Si no hay registros anteriores, empieza desde 1
+                }
+                pedidoTO.subtotal = 0;
+                pedidoTO.total = 0;
+
+                db.Pedido.Add(pedidoTO);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                        }
+                    }
+                }
+            }
+            return Redirect(Url.Content("~/Pedido/MostrarPedido"));
         }
     }
-}
+    }

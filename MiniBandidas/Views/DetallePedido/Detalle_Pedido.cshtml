@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Detalle de los pedidos";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
 <h2>Detalle_Pedido</h2>
@@ -14,18 +15,20 @@
                 <th>Topping1</th>
                 <th>Topping2</th>
             </tr>
-        @foreach (var pedido in Model)
-        {
-            <tr>
-                <td>@pedido.Pedido.numPedido</td>
-                <td>@pedido.Producto.nomProducto</td>
-                <td>@pedido.cantidad</td>
-                <td>@pedido.Topping1.nomTopping</td>
-                <td>@pedido.Topping2.nomTopping</td>
-            </tr>
-        }  
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.Pedido.numPedido</td>
+                    <td>@pedido.Producto.nomProducto</td>
+                    <td>@pedido.cantidad</td>
+                    <td>@pedido.Topping1.nomTopping</td>
+                    <td>@pedido.Topping2.nomTopping</td>
+                </tr>
+            }
         </tbody>
     </table>
+
+   
 </div>
 
 

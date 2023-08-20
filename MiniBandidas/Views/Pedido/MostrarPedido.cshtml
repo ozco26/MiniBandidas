@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
 <h2>Pedidos</h2>
@@ -22,4 +23,9 @@
             }
         </tbody>
     </table>
+    @using (Html.BeginForm("Crear_registro", "Pedido", FormMethod.Post, new { role = "form", @class = "" }))
+    {
+        <input type="submit" class="btn btn-primary" value="Crear Registro" />
+    }
+
 </div>
