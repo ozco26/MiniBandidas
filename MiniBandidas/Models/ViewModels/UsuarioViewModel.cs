@@ -15,25 +15,25 @@ namespace MiniBandidas.Models.ViewModels
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        [Required, EmailAddress]
+        [Required, EmailAddress, MaxLength(20)]
         [Display(Name = "Email:")]
         public string email { get; set; }
-        [Required]
+        [Required, MaxLength(20)]
         [Display(Name = "Nombre:")]
         public string nombre { get; set; }
-        [Required]
+        [Required, MaxLength(20)]
         [Display(Name = "Apellido:")]
         public string apellido { get; set; }
-        [Required, MinLength(8), MembershipPassword ]
+        [Required, MinLength(1), MembershipPassword, MaxLength(50)]
         [Display(Name = "Contraseña:")]
         public string contrasenna { get; set; }
-        [Required, Phone]
+        [Required, Phone, MaxLength(50)]
         [Display(Name = "Telefono:")]
         public string telefono { get; set; }
        /* [Required]*/
         [Display(Name = "Estado:")]
         public int estado { get; set; }
-        [Required, MinLength(8)]
+        [Required, MinLength(1), MaxLength(10)]
         [Display(Name = "Cedula:")]
         public string cedula { get; set; }
         

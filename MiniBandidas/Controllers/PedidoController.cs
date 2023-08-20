@@ -13,6 +13,8 @@ namespace MiniBandidas.Controllers
 {
     public class PedidoController : Controller
     {
+        int ultimoPedido;
+
         // GET: Pedido
         public ActionResult MostrarPedido()
         {
@@ -40,9 +42,7 @@ namespace MiniBandidas.Controllers
             using (var db = new DBMini_BandidasEntities())
             {
                 Pedido pedidoTO = new Pedido();
-
                 var ultimoRegistro = db.Pedido.OrderByDescending(r => r.numPedido).FirstOrDefault();
-
                 if (ultimoRegistro != null)
                 {
                     pedidoTO.numPedido = ultimoRegistro.numPedido + 1; // Asigna el siguiente número de pedido
@@ -51,6 +51,7 @@ namespace MiniBandidas.Controllers
                 {
                     pedidoTO.numPedido = 1; // Si no hay registros anteriores, empieza desde 1
                 }
+                ultimoPedido = pedidoTO.numPedido;
                 pedidoTO.subtotal = 0;
                 pedidoTO.total = 0;
 
@@ -69,8 +70,16 @@ namespace MiniBandidas.Controllers
                         }
                     }
                 }
+                DetallePedido.
+                
             }
             return Redirect(Url.Content("~/Pedido/MostrarPedido"));
+        }
+
+        public ActionResult CrearDetallePedido()
+        {
+
+            return View();
         }
     }
     }

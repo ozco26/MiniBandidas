@@ -147,7 +147,7 @@ namespace MiniBandidas.Controllers
             return Redirect(Url.Content("~/Usuario"));
         }
 
-        
+        /*
         private IEnumerable<SelectListItem> GetEstadoSelectItem(IEnumerable<Estados> elementos)
         {
             var selectList = new List<SelectListItem>();
@@ -160,6 +160,6 @@ namespace MiniBandidas.Controllers
                 });
             }
             return selectList;
-        }
+        }*/
     }
 }
