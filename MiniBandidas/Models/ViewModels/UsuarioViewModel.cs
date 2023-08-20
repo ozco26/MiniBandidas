@@ -30,8 +30,8 @@ namespace MiniBandidas.Models.ViewModels
         [Required, Phone]
         [Display(Name = "Telefono:")]
         public string telefono { get; set; }
-       /* [Required]
-        [Display(Name = "Estado:")]*/
+       /* [Required]*/
+        [Display(Name = "Estado:")]
         public int estado { get; set; }
         [Required, MinLength(8)]
         [Display(Name = "Cedula:")]

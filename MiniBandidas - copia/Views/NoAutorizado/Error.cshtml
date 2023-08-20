@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+<style>
+    h1 {
+        color: fuchsia;
+    }    
+    .btn-purple {
+        background-color: purple;
+        color: white;
+        text-align: center;
+        margin: 10px;
+    }
+</style>
+
+<h2>No cuenta con los permisos para acceder a esta opción</h2>
+<h4>Inicie sesion o registrese para continuar</h4>
+<div>
+    <input type="button" id="loguearse" class="btn btn-purple" value="Iniciar Sesión" onclick="document.location.href = '@Url.Content("~/Login/Index/")'" />
+    <input type="button" class="btn btn-purple" value="Registrarse" onclick="document.location.href = '@Url.Content("~/Usuario/Registrarse/")'" />
+    <input type="button" id="Home" class="btn btn-purple" value="Volver a inicio" onclick="document.location.href = '@Url.Content("~//")'" />
+</div>

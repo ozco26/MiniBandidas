@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Procesar_Pedido";
+}
+
+<h2>Procesar_Pedido</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+
+                <th># Pedido</th>
+                <th>SubTotal</th>
+                <th>Total</th>
+
+            </tr>
+            @foreach (var pedido in Model)
+            {
+
+                <tr>
+
+                    <td>@pedido.numPedido</td>
+                    <td>@pedido.subtotal</td>
+                    <td>@pedido.total</td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    @using (Html.BeginForm("Crear_registro", "Pedido", FormMethod.Post, new { role = "form", @class = "" }))
+    {
+        <input type="submit" class="btn btn-primary" value="Crear_registro"
+               onclick="document.location.href = '@Url.Content("~/Pedido/Procesar_Pedido")'" />}
+</div>

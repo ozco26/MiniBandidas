@@ -117,7 +117,7 @@ namespace MiniBandidas.Controllers
                 model.contrasenna = usuarioTO.contrasenna;
                 model.telefono = usuarioTO.telefono;
                 model.estado = usuarioTO.estado;
-                model.Estados = GetEstadoSelectItem(estadosTO);
+
             }
             return View(model);
         }
