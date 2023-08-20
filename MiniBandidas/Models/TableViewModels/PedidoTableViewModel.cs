@@ -7,16 +7,10 @@ namespace MiniBandidas.Models.TableViewModels
 {
     public class PedidoTableViewModel
     {
-        public int id { get; set; }
         public int numPedido { get; set; }
-        public int idProducto { get; set; }
-        public int cantidad { get; set; }
-        public int idTopping1 { get; set; }
-        public int idTopping2 { get; set; }
+        public decimal subtotal { get; set; }
+        public decimal total { get; set; }
 
-        public virtual Pedido Pedido { get; set; }
-        public virtual Producto Producto { get; set; }
-        public virtual Topping Topping1 { get; set; }
-        public virtual Topping Topping2 { get; set; }
+        public virtual DetallePedido DetallePedido { get; set; }
     }
 }

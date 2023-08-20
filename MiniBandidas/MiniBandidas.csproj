@@ -133,6 +133,7 @@
     <Compile Include="Controllers\Logout.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoAutorizadoController.cs" />
+    <Compile Include="Controllers\DetallePedidoController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filters\autorizacionUsuario.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Models\rol_operacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TableViewModels\DetallePedidoTableViewModel.cs" />
     <Compile Include="Models\TableViewModels\PedidoTableViewModel.cs" />
     <Compile Include="Models\TableViewModels\UsuarioTableViewModel.cs" />
     <Compile Include="Models\Topping.cs">
@@ -178,6 +180,7 @@
     <Compile Include="Models\Usuarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\DetallePedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\PedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,7 +271,8 @@
     <Content Include="Views\Shared\_LayoutAdministrador.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
-    <Content Include="Views\Pedido\Detalle_Pedido.cshtml" />
+    <Content Include="Views\DetallePedido\Detalle_Pedido.cshtml" />
+    <Content Include="Views\Pedido\MostrarPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

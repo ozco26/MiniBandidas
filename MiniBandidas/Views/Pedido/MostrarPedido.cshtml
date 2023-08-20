@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Pedidos";
+}
+
+<h2>Pedidos</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th># Pedido</th>
+                <th>Subtotal</th>
+                <th>Total</th>
+            </tr>
+            @foreach (var pedido in Model)
+            {
+                <tr>
+                    <td>@pedido.numPedido</td>
+                    <td>@pedido.subtotal</td>
+                    <td>@pedido.total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
