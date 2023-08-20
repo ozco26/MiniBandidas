@@ -13,8 +13,7 @@ namespace MiniBandidas.Controllers
 {
     public class PedidoController : Controller
     {
-        int ultimoPedido;
-
+        
         // GET: Pedido
         public ActionResult MostrarPedido()
         {
@@ -35,7 +34,7 @@ namespace MiniBandidas.Controllers
             return View(lstPedido);
 
         }
-
+       
         [HttpPost]
         public ActionResult Crear_registro(PedidoViewModel model)
         {
@@ -51,7 +50,7 @@ namespace MiniBandidas.Controllers
                 {
                     pedidoTO.numPedido = 1; // Si no hay registros anteriores, empieza desde 1
                 }
-                ultimoPedido = pedidoTO.numPedido;
+                
                 pedidoTO.subtotal = 0;
                 pedidoTO.total = 0;
 
@@ -59,6 +58,7 @@ namespace MiniBandidas.Controllers
                 try
                 {
                     db.SaveChanges();
+                  //  return RedirectToAction("AgregarDetalle", new { pedidoTO.numPedido });
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -69,17 +69,22 @@ namespace MiniBandidas.Controllers
                             Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
                         }
                     }
-                }
-                DetallePedido.
+                }                
                 
             }
-            return Redirect(Url.Content("~/Pedido/MostrarPedido"));
+            return Redirect(Url.Content("~/Pedido/MostrarPedido/")); /****aca se redirige a menu o a carrito de compras FALTA HACER*****/
         }
-
-        public ActionResult CrearDetallePedido()
+        /*
+        public ActionResult AgregarDetalle(DetallePedido model, int numeroPedido)
         {
+            Pedido pedido = new .Pedidos.FirstOrDefault(p => p.Id == pedidoId);
+            if (pedido == null)
+            {
+                return NotFound();
+            }
 
             return View();
-        }
+        }*/
     }
-    }
+}
+        

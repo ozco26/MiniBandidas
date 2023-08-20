@@ -48,95 +48,17 @@ namespace MiniBandidas.Controllers
         }
 
 
-        public ActionResult crearPedido()
-        {
-            using (var db = new DBMini_BandidasEntities())
-            {
-                Pedido pedidoTO = new Pedido();
-                var ultimoRegistro = db.Pedido.OrderByDescending(r => r.numPedido).FirstOrDefault();
-                if (ultimoRegistro != null)
-                {
-                    pedidoTO.numPedido = ultimoRegistro.numPedido + 1; // Asigna el siguiente número de pedido
-                }
-                else
-                {
-                    pedidoTO.numPedido = 1; // Si no hay registros anteriores, empieza desde 1
-                }
-                
-                pedidoTO.subtotal = 0;
-                pedidoTO.total = 0;
+    
 
-                db.Pedido.Add(pedidoTO);
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                        }
-                    }
-                }   
-            }
-            return Redirect(Url.Content("~/Pedido/MostrarPedido"));
-        }
-
-
+        /*
         public ActionResult crearlinea(DetallePedido model, int numeroPedido)
         {
+              
             if (!ModelState.IsValid) return View();
             using (var db = new DBMini_BandidasEntities())
             {
-
-                /*
-
-               // using (var db = new DBMini_BandidasEntities())
-               // {
-                    Pedido pedidoTO = new Pedido();
-                    var ultimoRegistro = db.Pedido.OrderByDescending(r => r.numPedido).FirstOrDefault();
-                    if (ultimoRegistro != null)
-                    {
-                        pedidoTO.numPedido = ultimoRegistro.numPedido + 1; // Asigna el siguiente número de pedido
-                    }
-                    else
-                    {
-                        pedidoTO.numPedido = 1; // Si no hay registros anteriores, empieza desde 1
-                    }
-                    ultimoPedido = pedidoTO.numPedido;
-                    pedidoTO.subtotal = 0;
-                    pedidoTO.total = 0;
-
-                    db.Pedido.Add(pedidoTO);
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (DbEntityValidationException ex)
-                    {
-                        foreach (var validationErrors in ex.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                            }
-                        }
-                    }
-                  
-              
-
-            }
-                return Redirect(Url.Content("~/Pedido/MostrarPedido"));
-            }
-          */
-
-
                 DetallePedido detallePedidoTO = new DetallePedido();
 
-        detallePedidoTO = numeroPedido; /****/
                 detallePedidoTO.idProducto = model.idProducto;
                 detallePedidoTO.cantidad = model.cantidad;
                 detallePedidoTO.idTopping1 = model.idTopping1;
@@ -157,7 +79,6 @@ namespace MiniBandidas.Controllers
                     }
                 }
                 return ;
-            }
+            }*/
         }
     }
-}
