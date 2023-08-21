@@ -3,6 +3,23 @@
     ViewBag.Title = "Editar Usuario";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
+<style>
+    h2 {
+        color: fuchsia;
+        text-align: center;
+    }
+
+    body {
+        background-color: lavender;
+    }
+
+    .btn-purple {
+        background-color: purple;
+        color: white;
+        margin: 10px;
+        text-align: center;
+    }
+</style>
 
 <h2>Editar Usuario </h2>
 <hr />
@@ -40,7 +57,7 @@
                    new SelectListItem { Value = "3", Text = "Admisntrador" },
                      }, new { @class = "myselect d-block mb-2" })
             <div class="mt-2">
-                <input type="submit" class="btn btn-primary" value="Guardar" />
+                <input type="submit" class="btn btn-purple" value="Guardar" />
                 <input type="button" class="btn btn-secondary" value="Regresar"
                        onclick="document.location.href = '@Url.Content("~/usuario/Index")'" />
             </div>

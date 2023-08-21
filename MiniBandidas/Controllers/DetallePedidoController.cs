@@ -8,12 +8,14 @@ using System.Web.Mvc;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using MiniBandidas.Models.ViewModels;
+using MiniBandidas.Filters;
 
 namespace MiniBandidas.Controllers
 {
     public class DetallePedidoController : Controller
     {
         // GET: Pedido
+        [autorizacionUsuario(idOperacion: (3))]
         public ActionResult Detalle_Pedido()
         {
             List<DetallePedidoTableViewModel> lstPedido = null;

@@ -10,19 +10,37 @@
             /* Estilos CSS para la tabla sin bordes */
             table {
                 border-collapse: collapse;
+                margin: 0 auto; /* Establece margen automático en los lados izquierdo y derecho */
+            }
+                     
+            body {
+                background-color: lavender;
+                text-align: center;
             }
 
             th, td {
                 border: none;
                 padding: 8px;
                 text-align: center;
+                text-align: center;
             }
-            /* Estilos CSS para el botón */
+            
             .quantity-button {
                 font-size: 20px;
                 padding: 5px 10px;
                 cursor: pointer;
                 border: none;
+            }
+
+            h1 {
+                color: fuchsia;
+            }
+
+            .btn-purple {
+                background-color: purple;
+                color: white;
+                margin: 10px;
+                text-align: center;
             }
 
             .quantity-count {
@@ -126,6 +144,8 @@
                 </select>
             </td>
         </tr>
+        <td></td>
+        <td> <input type="button" class="btn btn-purple" value="Agregar al carrito"  /></td>
     </table>
 </body>
 

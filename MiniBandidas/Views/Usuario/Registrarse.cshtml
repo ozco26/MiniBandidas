@@ -4,7 +4,25 @@
 }
 
 <h2>Agregar Usuario</h2>
-<hr />
+
+<style>
+    h2 {
+        color: fuchsia;
+        text-align: center;
+    }
+
+    body {
+        background-color: lavender;        
+    }
+
+    .btn-purple {
+        background-color: purple;
+        color: white;
+        margin: 10px;
+        text-align: center;
+    }
+
+</style>
 
 <div Class="row">
     <div class=" = " col-10">
@@ -53,7 +71,7 @@
 
 
             <div class="mt-2">
-                <input type="submit" class="btn btn-primary" value="Registrarse" />
+                <input type="submit" class="btn btn-purple" value="Registrarse" />
                 <input type="button" class="btn btn-secondary" value="Regresar"
                        onClick="document.location.href ='@Url.Content("~/Home/Index")'" />
             </div>

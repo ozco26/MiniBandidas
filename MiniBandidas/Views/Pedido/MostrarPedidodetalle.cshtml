@@ -1,18 +1,9 @@
-﻿@{
-    ViewBag.Title = "Pedidos";
-    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+﻿
+@{
+    ViewBag.Title = "MostrarPedidodetalle";
 }
-<style>
-    h2 {
-        color: fuchsia;
-        text-align: center;
-    }
 
-    body {
-        background-color: lavender;
-    }
-</style>
-<h2>Pedidos</h2>
+<h2>MostrarPedidodetalle</h2>
 
 <div class="table-responsive">
     <table class="table table-hover">
@@ -21,6 +12,7 @@
                 <th># Pedido</th>
                 <th>Subtotal</th>
                 <th>Total</th>
+                <th>Detalle</th>
             </tr>
             @foreach (var pedido in Model)
             {
@@ -28,6 +20,7 @@
                     <td>@pedido.numPedido</td>
                     <td>@pedido.subtotal</td>
                     <td>@pedido.total</td>
+                    <td>@pedido.Detalles</td>
                 </tr>
             }
         </tbody>

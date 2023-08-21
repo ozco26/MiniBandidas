@@ -13,7 +13,7 @@ namespace MiniBandidas.Controllers
         {
             return View();
         }
-        //[autorizacionUsuario(idOperacion: (1))] Debería de poderse ver el menú aunque no haya iniciado sesión 
+        [autorizacionUsuario(idOperacion: (1))] //Debería de poderse ver el menú aunque no haya iniciado sesión 
         public ActionResult Menu()
         {
             ViewBag.Message = "Your application description page.";

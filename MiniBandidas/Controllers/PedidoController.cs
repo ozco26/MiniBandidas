@@ -8,13 +8,15 @@ using System.Web.Mvc;
 using MiniBandidas.Models.ViewModels;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using MiniBandidas.Filters;
 
 namespace MiniBandidas.Controllers
 {
     public class PedidoController : Controller
     {
-        
+
         // GET: Pedido
+        [autorizacionUsuario(idOperacion: (3))]
         public ActionResult MostrarPedido()
         {
 
@@ -36,6 +38,7 @@ namespace MiniBandidas.Controllers
         }
        
         [HttpPost]
+        [autorizacionUsuario(idOperacion: (3))]
         public ActionResult Crear_registro(PedidoViewModel model)
         {
             using (var db = new DBMini_BandidasEntities())

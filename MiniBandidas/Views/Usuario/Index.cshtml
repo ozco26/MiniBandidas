@@ -3,12 +3,28 @@
     ViewBag.Title = "Lista Usuarios";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
+<style>
+    h2 {
+        color: fuchsia;
+        text-align: center;
+    }
 
+    body {
+        background-color: lavender;
+    }
+
+    .btn-purple {
+        background-color: purple;
+        color: white;
+        margin: 10px;
+        text-align: center;
+    }
+</style>
 <h2>Lista Usuarios</h2>
 <hr />
 
 <table class="table table-hover">
-    <thead class="table-dark">
+    <thead class="table-danger">
         <tr>
             <th>Correo</th>
             <th>Nombre</th>
@@ -30,7 +46,7 @@
                 <td>@usuario.telefono</td>
                 <td>@usuario.Estados.descripcion</td>
                 <td>
-                    <input type="button" class=" btn btn-warning" value="Editar" onclick="document.location.href = '@Url.Content("~/Usuario/Edit/")@usuario.id'" />
+                    <input type="button" class=" btn btn-purple" value="Editar" onclick="document.location.href = '@Url.Content("~/Usuario/Edit/")@usuario.id'" />
                     <input type="button" class=" btn btn-outline-warning" value="Borrar" onclick="eliminarUsuario('@usuario.id')" />
                 </td>
             </tr>
