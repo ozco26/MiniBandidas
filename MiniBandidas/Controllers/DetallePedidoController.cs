@@ -46,39 +46,91 @@ namespace MiniBandidas.Controllers
             }
             return View(lstPedido);
         }
-
-
-    
-
         /*
-        public ActionResult crearlinea(DetallePedido model, int numeroPedido)
-        {
-              
-            if (!ModelState.IsValid) return View();
-            using (var db = new DBMini_BandidasEntities())
-            {
-                DetallePedido detallePedidoTO = new DetallePedido();
+       public ActionResult ProcesarArrays(int[] idTopping1, int[] idTopping2, int[] cantidad)
+       {
+           for (int i = 0; i < idTopping1.Length; i++)
 
-                detallePedidoTO.idProducto = model.idProducto;
-                detallePedidoTO.cantidad = model.cantidad;
-                detallePedidoTO.idTopping1 = model.idTopping1;
-                detallePedidoTO.idTopping2 = model.idTopping2;
-                db.DetallePedido.Add(detallePedidoTO);
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
-                        }
-                    }
-                }
-                return ;
-            }*/
-        }
+           {
+               int topping1 = idTopping1[i];
+               int topping2 = idTopping2[i];
+               int cantidades = cantidad[i];
+
+
+               List<DetallePedidoTableViewModel> lstPedido = null;
+
+               using (DBMini_BandidasEntities db = new DBMini_BandidasEntities()) 
+               {
+                   DetallePedido detallePedidoTO = new DetallePedido();
+                   lstPedido = (from u in db.DetallePedido
+                                join e in db.Pedido
+                                on u.numPedido equals e.numPedido
+                                join f in db.Producto
+                                on u.idProducto equals f.id
+                                join g in db.Topping
+                                on u.idTopping1 equals g.id
+                                join h in db.Topping
+                                on u.idTopping2 equals h.id
+
+                                orderby u.id
+                                select new DetallePedidoTableViewModel
+                                {
+                                    //id = u.id,
+                                    detallePedidoTO.numPedido = 1,
+                                    idProducto = i,
+                                    cantidad = cantidades,
+                                    idTopping1 = topping1,
+                                    idTopping2 = topping2,
+                                    Pedido = e,
+                                    Producto = f,
+                                    Topping1 = g,
+                                    Topping2 = h,
+                                }).ToList();
+                                db.DetallePedido.Add(detallePedidoTO);
+                   try
+                   {
+                       db.SaveChanges();
+                   }
+                   catch (DbEntityValidationException ex)
+                   {
+
+                   }
+               return View(lstPedido);
+
+       }
+
+
+
+
+       /*
+       public ActionResult crearlinea(DetallePedido model, int numeroPedido)
+       {
+
+           if (!ModelState.IsValid) return View();
+           using (var db = new DBMini_BandidasEntities())
+           {
+               DetallePedido detallePedidoTO = new DetallePedido();
+
+               detallePedidoTO.idProducto = model.idProducto;
+               detallePedidoTO.cantidad = model.cantidad;
+               detallePedidoTO.idTopping1 = model.idTopping1;
+               detallePedidoTO.idTopping2 = model.idTopping2;
+               db.DetallePedido.Add(detallePedidoTO);
+               try
+               {
+                   db.SaveChanges();
+               }
+               catch (DbEntityValidationException ex)
+               {
+                   foreach (var validationErrors in ex.EntityValidationErrors)
+                   {
+                       foreach (var validationError in validationErrors.ValidationErrors)
+                       {
+                           Debug.WriteLine($"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}");
+                       }
+                   }
+               }
+               return ;
+           }*/
     }
+}

@@ -32,60 +32,102 @@
     </head>
 </main>
 <body>
-    @using (Html.BeginForm("Edit", "Pedido", FormMethod.Post, new { role = "form", @class = "" }))
-    {
-        <h1>Nuestras opciones</h1>
-        <table>
-            <tr>
-                <th>Cajita de 4 minis</th>
-                <th>Brocheta</th>
-                <th>Individuales</th>
-            </tr>
-            <tr>
-                <td>
-                    <img src="~/Imagenes/caja4.png" alt="cuatro minis" width="200" height="200" />
-                </td>
-                <td>
-                    <img src="~/Imagenes/brocheta.png.png" alt="brocheta" width="200" height="200" />
-                </td>
-                <td>
-                    <img src="~/Imagenes/individuales.png" alt="brocheta" width="200" height="200" />
+    <h1>Nuestras opciones</h1>
+    <table>
+        <tr>
+            <th>Cajita de 4 minis</th>
+            <th>Brocheta</th>
+            <th>Individuales</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Imagenes/caja4.png" alt="cuatro minis" width="200" height="200" />
+            </td>
+            <td>
+                <img src="~/Imagenes/brocheta.png.png" alt="brocheta" width="200" height="200" />
+            </td>
+            <td>
+                <img src="~/Imagenes/individuales.png" alt="brocheta" width="200" height="200" />
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button class="quantity-button" onclick="decrease(1)">-</button>
-                    <span id="quantity1">0</span>
-                    <button class="quantity-button" onclick="increase(1)">+</button>
-                </td>
-                <td>
-                    <button class="quantity-button" onclick="decrease(2)">-</button>
-                    <span id="quantity2">0</span>
-                    <button class="quantity-button" onclick="increase(2)">+</button>
-                </td>
-                <td>
-                    <button class="quantity-button" onclick="decrease(3)">-</button>
-                    <span id="quantity3">0</span>
-                    <button class="quantity-button" onclick="increase(3)">+</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    
-                </td>
-                <td>Dato 5</td>
-                <td>Dato 6</td>
-            </tr>
-            <tr>
-                <td>Dato 4</td>
-                <td>Dato 5</td>
-                <td>Dato 6</td>
-            </tr>
-        </table>
-    }
-    </body>
-
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="quantity-button" onclick="decrease(1)">-</button>
+                <span id="quantity1">0</span>
+                <button class="quantity-button" onclick="increase(1)">+</button>
+            </td>
+            <td>
+                <button class="quantity-button" onclick="decrease(2)">-</button>
+                <span id="quantity2">0</span>
+                <button class="quantity-button" onclick="increase(2)">+</button>
+            </td>
+            <td>
+                <button class="quantity-button" onclick="decrease(3)">-</button>
+                <span id="quantity3">0</span>
+                <button class="quantity-button" onclick="increase(3)">+</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h6>Seleccione un topping: </h6><select id="miDropdown1">
+                    <option value="1">Chocolate</option>
+                    <option value="2">Dulce de leche</option>
+                    <option value="3">Leche condensanda</option>
+                    <option value="4">M&MS</option>
+                    <option value="5">Galleta Oreo</option>
+                </select>
+            </td>
+            <td>
+                <h6>Seleccione un topping: </h6><select id="miDropdown2">
+                    <option value="1">Chocolate</option>
+                    <option value="2">Dulce de leche</option>
+                    <option value="3">Leche condensanda</option>
+                    <option value="4">M&MS</option>
+                    <option value="5">Galleta Oreo</option>
+                </select>
+            </td>
+            <td>
+                <h6>Seleccione un topping: </h6><select id="miDropdown3">
+                    <option value="1">Chocolate</option>
+                    <option value="2">Dulce de leche</option>
+                    <option value="3">Leche condensanda</option>
+                    <option value="4">M&MS</option>
+                    <option value="5">Galleta Oreo</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h6>Seleccione un topping: </h6><select id="miDropdown4">
+                    <option value="1">Chocolate</option>
+                    <option value="2">Dulce de leche</option>
+                    <option value="3">Leche condensanda</option>
+                    <option value="4">M&MS</option>
+                    <option value="5">Galleta Oreo</option>
+                </select>
+            </td>
+            <td>
+                <h6>Seleccione un topping: </h6><select id="miDropdown5">
+                    <option value="1">Chocolate</option>
+                    <option value="2">Dulce de leche</option>
+                    <option value="3">Leche condensanda</option>
+                    <option value="4">M&MS</option>
+                    <option value="5">Galleta Oreo</option>
+                </select>
+            </td>
+            <td>
+                <h6>Seleccione un topping: </h6><select id="miDropdown6">
+                    <option value="1">Chocolate</option>
+                    <option value="2">Dulce de leche</option>
+                    <option value="3">Leche condensanda</option>
+                    <option value="4">M&MS</option>
+                    <option value="5">Galleta Oreo</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</body>
 
 
 @section Scripts
@@ -109,5 +151,13 @@
             const quantityElement = document.getElementById(`quantity${index}`);
             quantityElement.textContent = quantities[index - 1];
         }
+        const miDropdown = [0, 0, 0, 0, 0, 0];
+        function updateDropdown(index) {
+            const dropdownElement = document.getElementById(`miDropdown${index}`);
+            dropdownElement.textContent = miDropdown[index - 1];
+        }
+
+
     </script>
+
 }
